@@ -3,27 +3,24 @@
  */
 package com.karan.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.karan.driver.DriverManager;
 
 /**
  * @author karansonkar
  *
  */
-public final class FirstTest {
+public final class FirstTest extends BaseTest{
 	
 	private FirstTest() {}
 	
 	@Test
-	public void f() {
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
-		driver.get("https://google.com");
-		driver.close();
-		driver.quit();
+	public void f() throws InterruptedException {
+		DriverManager.getDriver().findElement(By.name("q")).sendKeys("Test Automation", Keys.ENTER);
+		Thread.sleep(2000);
 	}
 
 }
