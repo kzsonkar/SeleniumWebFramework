@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.karan.tests;
+package com.karan.orangehrm.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import com.karan.driver.Driver;
+import com.karan.orangehrm.driver.Driver;
 
 /**
  * @author karansonkar
@@ -18,7 +18,7 @@ public class BaseTest {
 	}
 
 	@BeforeMethod
-	protected void setup() {
+	protected void setup() throws Exception {
 		Driver.initDriver();
 	}
 

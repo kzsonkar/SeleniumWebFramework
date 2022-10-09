@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.karan.driver;
+package com.karan.orangehrm.driver;
 
 import org.openqa.selenium.WebDriver;
 
