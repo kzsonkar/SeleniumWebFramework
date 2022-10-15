@@ -9,19 +9,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.karan.orangehrm.constants.FrameworkConstants;
-
 import java.util.Objects;
 import java.util.Properties;
+
+import com.karan.orangehrm.constants.FrameworkConstants;
+import com.karan.orangehrm.enums.ConfigProperties;
 
 /**
  * @author karansonkar
  *
  */
-public final class ReadPropertyFile {
+public final class PropertyUtils {
 
-	private ReadPropertyFile() {
+	private PropertyUtils() {
 	}
 
 	private static Properties property = new Properties();
@@ -41,11 +41,11 @@ public final class ReadPropertyFile {
 		}
 	}
 
-	public static String getValue(String key) throws Exception {
-		if(Objects.isNull(key) || Objects.isNull(CONFIGMAP.get(key))) {
+	public static String getValue(ConfigProperties key) throws Exception {
+		if(Objects.isNull(key.name().toLowerCase()) || Objects.isNull(CONFIGMAP.get(key.name().toLowerCase()))) {
 			throw new Exception("Property name " + key + " not found in config file");
 		}
-		return CONFIGMAP.get(key);
+		return CONFIGMAP.get(key.name().toLowerCase());
 	}
 
 }

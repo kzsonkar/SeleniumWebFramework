@@ -8,7 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.karan.orangehrm.utils.ReadPropertyFile;
+import com.karan.orangehrm.enums.ConfigProperties;
+import com.karan.orangehrm.utils.PropertyUtils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -25,9 +26,9 @@ public final class Driver {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			WebDriverManager.chromedriver().setup();
 			DriverManager.setDriver(new ChromeDriver());
-			DriverManager.getDriver().get(ReadPropertyFile.getValue("url"));
+			DriverManager.getDriver().get(PropertyUtils.getValue(ConfigProperties.URL));
 			DriverManager.getDriver().manage().timeouts()
-					.implicitlyWait(Integer.parseInt(ReadPropertyFile.getValue("implicitWaitTime")), TimeUnit.SECONDS);
+					.implicitlyWait(Integer.parseInt(PropertyUtils.getValue(ConfigProperties.IMPLICITWAITTIME)), TimeUnit.SECONDS);
 		}
 	}
 

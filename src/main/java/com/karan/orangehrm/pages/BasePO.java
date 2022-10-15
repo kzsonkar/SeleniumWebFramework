@@ -4,11 +4,10 @@
 package com.karan.orangehrm.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.karan.orangehrm.driver.DriverManager;
-import com.karan.orangehrm.utils.ReadPropertyFile;
+import com.karan.orangehrm.enums.WaitStrategy;
+import com.karan.orangehrm.factories.ExplicitWaitFactory;
 
 /**
  * @author karansonkar
@@ -16,37 +15,27 @@ import com.karan.orangehrm.utils.ReadPropertyFile;
  */
 public class BasePO {
 
-	private static WebDriverWait waitDriver = null;
-
-	static {
-		try {
-			waitDriver = new WebDriverWait(DriverManager.getDriver(),
-					Integer.parseInt(ReadPropertyFile.getValue("explicitWaitTime")));
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * 
 	 */
 	protected BasePO() {
 	}
 
-	public static void waitAndClick(By locator) {
-		waitDriver.until(ExpectedConditions.presenceOfElementLocated(locator));
-		DriverManager.getDriver().findElement(locator).click();
+	protected void waitAndClick(By locator, WaitStrategy strategy) throws NumberFormatException, Exception {
+		ExplicitWaitFactory.performExplicitWait(strategy, locator).click();
 	}
-	
-	public static void waitAndSendKeys(String text, By locator) {
-		waitDriver.until(ExpectedConditions.presenceOfElementLocated(locator));
-		DriverManager.getDriver().findElement(locator).sendKeys(text);
+
+	protected void waitAndSendKeys(String text, By locator, WaitStrategy strategy)
+			throws NumberFormatException, Exception {
+		ExplicitWaitFactory.performExplicitWait(strategy, locator).sendKeys(text);
 	}
-	
-	public static void selectFromBootStrapDropDown(By locators, String toBeSelected) {
-		
+
+	protected String getTitle() {
+		return DriverManager.getDriver().getTitle();
+	}
+
+	protected void selectFromBootStrapDropDown(By locators, String toBeSelected) {
+
 	}
 
 }
