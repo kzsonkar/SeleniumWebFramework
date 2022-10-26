@@ -3,13 +3,15 @@
  */
 package com.karan.orangehrm.tests;
 
+import java.util.Map;
+
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
-import com.karan.orangehrm.enums.ConfigProperties;
+import com.karan.orangehrm.annotations.FrameworkAnnotation;
+import com.karan.orangehrm.enums.CategoryType;
 import com.karan.orangehrm.enums.ProfileDropDownOptions;
 import com.karan.orangehrm.pages.LoginPO;
-import com.karan.orangehrm.utils.PropertyUtils;
 
 /**
  * @author karansonkar
@@ -23,12 +25,16 @@ public final class LoginLogoutTest extends BaseTest {
 	private LoginLogoutTest() {
 	}
 
+	/**
+	 * @param username
+	 * @param password
+	 * @throws Exception
+	 */
 	@Test
-	public void f() throws Exception {
+	@FrameworkAnnotation(author = { "Karan" }, category = { CategoryType.REGRESSION })
+	public void loginLogoutTest(Map<String, String> data) throws Exception {
 
-		String title = new LoginPO()
-				.loginToApp(PropertyUtils.getValue(ConfigProperties.USERNAME),
-						PropertyUtils.getValue(ConfigProperties.PASSWORD))
+		String title = new LoginPO().loginToApp(data.get("username"), data.get("password"))
 				.doLogout(ProfileDropDownOptions.LOGOUT).getCurrentPageTitle();
 
 		Assertions.assertThat(title).isEqualTo("OrangeHRM");

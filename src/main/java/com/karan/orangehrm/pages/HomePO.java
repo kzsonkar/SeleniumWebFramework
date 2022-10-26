@@ -26,12 +26,12 @@ public final class HomePO extends BasePO {
 	public LoginPO doLogout(ProfileDropDownOptions options) throws NumberFormatException, Exception {
 		selectUserProfile();
 		String xpath = String.format(USERDROPDOWNOPTIONS, options.getName());
-		waitAndClick(By.xpath(xpath), WaitStrategy.PRESENCE);
+		waitAndClick(By.xpath(xpath), WaitStrategy.PRESENCE, options.getName());
 		return new LoginPO();
 	}
 
 	private void selectUserProfile() throws NumberFormatException, Exception {
-		waitAndClick(USERPROFILE, WaitStrategy.PRESENCE);
+		waitAndClick(USERPROFILE, WaitStrategy.PRESENCE, "Userprofile");
 	}
 
 }

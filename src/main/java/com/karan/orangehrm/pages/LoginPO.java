@@ -25,12 +25,12 @@ public final class LoginPO extends BasePO {
 	}
 
 	private LoginPO setUsername(String username) throws NumberFormatException, Exception {
-		waitAndSendKeys(username, USER_NAME_TEXT_BOX, WaitStrategy.PRESENCE);
+		waitAndSendKeys(username, USER_NAME_TEXT_BOX, WaitStrategy.PRESENCE, "Username text box");
 		return this;
 	}
 
 	private LoginPO setPassword(String password) throws NumberFormatException, Exception {
-		waitAndSendKeys(password, PASSWORD_TEXT_BOX, WaitStrategy.PRESENCE);
+		waitAndSendKeys(password, PASSWORD_TEXT_BOX, WaitStrategy.PRESENCE, "Password text box");
 		return this;
 	}
 
@@ -39,7 +39,7 @@ public final class LoginPO extends BasePO {
 	}
 
 	private HomePO clickLoginButton() throws NumberFormatException, Exception {
-		waitAndClick(LOGIN_BUTTON, WaitStrategy.PRESENCE);
+		waitAndClick(LOGIN_BUTTON, WaitStrategy.PRESENCE, "Login button");
 		return new HomePO();
 	}
 
