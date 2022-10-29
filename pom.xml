@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.karan.automation</groupId>
-  <artifactId>web.google</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.karan.automation</groupId>
+	<artifactId>web.orangeHrm</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<owner.version>1.0.12</owner.version>
@@ -28,11 +28,11 @@
 
 	<dependencies>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>${junit.jupiter.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.reflections</groupId>
@@ -137,4 +137,45 @@
 		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>OrangeHrmTest_PROD</id>
+			<activation>
+				<property>
+					<name>OrangeHrmTest_PROD</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.0.0-M7</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>testng.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
 </project>

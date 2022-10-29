@@ -11,7 +11,7 @@ public enum WaitStrategy {
 	
 	PRESENCE,
 	CLICKABLE,
-	VISIBLE,
+	VISIBILITY,
 	INVISIBILITY,
 	NONE;
 

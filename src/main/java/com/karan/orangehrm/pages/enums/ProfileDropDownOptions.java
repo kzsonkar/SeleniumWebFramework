@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.karan.orangehrm.enums;
+package com.karan.orangehrm.pages.enums;
 
 /**
  * @author karansonkar

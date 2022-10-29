@@ -17,6 +17,8 @@ import com.karan.orangehrm.factories.ExplicitWaitFactory;
  *
  */
 public class BasePO {
+	
+	protected static final String TOPBARMENUOPTIONS = "//div[@class='oxd-topbar-body']//li//a[text()='%s']";
 
 	/**
 	 * 
@@ -24,20 +26,29 @@ public class BasePO {
 	protected BasePO() {
 	}
 
-	protected void waitAndClick(By locator, WaitStrategy strategy, String elementName) throws NumberFormatException, Exception {
-		ExplicitWaitFactory.performExplicitWait(strategy, locator).click();
+	protected void waitAndClick(By locator, WaitStrategy strategy, String elementName) {
+		try {
+			ExplicitWaitFactory.performExplicitWait(strategy, locator).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		log(PASS, "Clicked on " + elementName);
 	}
 
-	protected void waitAndSendKeys(String text, By locator, WaitStrategy strategy, String elementName)
-			throws NumberFormatException, Exception {
-		ExplicitWaitFactory.performExplicitWait(strategy, locator).sendKeys(text);
+	protected void waitAndSendKeys(String text, By locator, WaitStrategy strategy, String elementName) {
+		try {
+			ExplicitWaitFactory.performExplicitWait(strategy, locator).clear();
+			ExplicitWaitFactory.performExplicitWait(strategy, locator).sendKeys(text);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		log(PASS, text + " value entered successfully in " + elementName);
 	}
 
 	protected String getTitle() {
 		return DriverManager.getDriver().getTitle();
 	}
+	
 
 	protected void selectFromBootStrapDropDown(By locators, String toBeSelected) {
 

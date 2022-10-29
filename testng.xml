@@ -8,7 +8,8 @@
 	</listeners>
 	<test thread-count="2" parallel="methods" name="Test">
 		<classes>
-			<class name="com.karan.orangehrm.tests.LoginLogoutTest" />
+			<!-- <class name="com.karan.orangehrm.tests.LoginLogoutTest" /> -->
+			<class name="com.karan.orangehrm.tests.AddEmployeeTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

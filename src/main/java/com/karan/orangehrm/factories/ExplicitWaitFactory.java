@@ -35,7 +35,7 @@ public final class ExplicitWaitFactory {
 			element = new WebDriverWait(DriverManager.getDriver(),
 					Integer.parseInt(PropertyUtils.getValue(ConfigProperties.EXPLICITWAITTIME)))
 					.until(ExpectedConditions.presenceOfElementLocated(by));
-		} else if (strategy == WaitStrategy.VISIBLE) {
+		} else if (strategy == WaitStrategy.VISIBILITY) {
 			element = new WebDriverWait(DriverManager.getDriver(),
 					Integer.parseInt(PropertyUtils.getValue(ConfigProperties.EXPLICITWAITTIME)))
 					.until(ExpectedConditions.visibilityOfElementLocated(by));

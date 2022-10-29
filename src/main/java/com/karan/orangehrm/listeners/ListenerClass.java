@@ -1,5 +1,12 @@
 package com.karan.orangehrm.listeners;
 
+import static com.karan.orangehrm.enums.LogType.FAIL;
+import static com.karan.orangehrm.enums.LogType.PASS;
+import static com.karan.orangehrm.enums.LogType.SKIP;
+import static com.karan.orangehrm.reports.FrameworkLogger.log;
+
+import java.util.Arrays;
+
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
@@ -8,9 +15,6 @@ import org.testng.ITestResult;
 
 import com.karan.orangehrm.annotations.FrameworkAnnotation;
 import com.karan.orangehrm.reports.ExtentReport;
-
-import static com.karan.orangehrm.enums.LogType.*;
-import static com.karan.orangehrm.reports.FrameworkLogger.*;
 
 public class ListenerClass implements ISuiteListener, ITestListener {
 
@@ -69,6 +73,8 @@ public class ListenerClass implements ISuiteListener, ITestListener {
 	 */
 	public void onTestFailure(ITestResult result) {
 		log(FAIL, result.getMethod().getMethodName() + " is failed");
+		log(FAIL,result.getThrowable().toString());
+		log(FAIL,Arrays.toString(result.getThrowable().getStackTrace()));
 	}
 
 	/**
