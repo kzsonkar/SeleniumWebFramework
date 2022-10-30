@@ -26,6 +26,7 @@ public final class Driver {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			WebDriverManager.chromedriver().setup();
 			DriverManager.setDriver(new ChromeDriver());
+			DriverManager.getDriver().manage().window().maximize();
 			DriverManager.getDriver().get(PropertyUtils.getValue(ConfigProperties.URL));
 			DriverManager.getDriver().manage().timeouts()
 					.implicitlyWait(Integer.parseInt(PropertyUtils.getValue(ConfigProperties.IMPLICITWAITTIME)), TimeUnit.SECONDS);

@@ -40,7 +40,7 @@ public class DataProviderUtils {
 
 		if (list.isEmpty()) {
 			list = ExcelUtils.getTestDetails(FrameworkConstants.getIterationDataSheet());
-			System.out.println(list);
+			//System.out.println(list);
 		}
 		List<Map<String, String>> smalllist = new ArrayList<>(list);
 

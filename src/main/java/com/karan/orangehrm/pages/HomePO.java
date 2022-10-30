@@ -9,6 +9,8 @@ import com.karan.orangehrm.driver.DriverManager;
 import com.karan.orangehrm.enums.WaitStrategy;
 import com.karan.orangehrm.pages.enums.ProfileDropDownOptions;
 import com.karan.orangehrm.pages.enums.TopBarMenu;
+import com.karan.orangehrm.pages.homepagecomponents.EmployeeListComponent;
+import com.karan.orangehrm.pages.homepagecomponents.LeftMenuComponent;
 import com.karan.orangehrm.utils.DynamicXpathUtils;
 
 /**
@@ -16,7 +18,9 @@ import com.karan.orangehrm.utils.DynamicXpathUtils;
  *
  */
 public final class HomePO extends BasePO {
-
+	
+	EmployeeListComponent employeeListComponent;
+	LeftMenuComponent leftMenuComponent;
 	private static final String TOPBARMENUOPTIONS = "//div[@class='oxd-topbar-body']//li//a[text()='%s']";
 	private static final By RECORDSCONTAINER = By.className("orangehrm-container");
 	private static final String USERDROPDOWNOPTIONS = "//ul[@class='oxd-dropdown-menu']//li/a[text()='%s']";

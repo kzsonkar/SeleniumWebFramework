@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite thread-count="2" parallel="methods" data-provider-thread-count="2" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.karan.orangehrm.listeners.ListenerClass"/>
+    <listener class-name="com.karan.orangehrm.listeners.MethodInterceptorImpl"/>
+    <listener class-name="com.karan.orangehrm.listeners.AnnotationTransformerImpl"/>
+  </listeners>
+  <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
       <class name="com.karan.orangehrm.tests.AddEmployeeTest">
         <methods>
-          <include name="addEmployeeTest"/>
+          <include name="addEmployeeTest" invocation-numbers="0 0"/>
           <include name="setup"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- com.karan.orangehrm.tests.AddEmployeeTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

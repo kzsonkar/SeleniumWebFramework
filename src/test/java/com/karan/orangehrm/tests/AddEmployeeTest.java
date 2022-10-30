@@ -5,6 +5,7 @@ package com.karan.orangehrm.tests;
 
 import java.util.Map;
 
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 import com.karan.orangehrm.annotations.FrameworkAnnotation;
@@ -29,7 +30,7 @@ public final class AddEmployeeTest extends BaseTest {
 
 	}
 
-	@FrameworkAnnotation(author = { "KARAN" }, category = { CategoryType.SMOKE, CategoryType.SMOKE })
+	@FrameworkAnnotation(author = { "KARAN" }, category = { CategoryType.SMOKE, CategoryType.REGRESSION })
 	@Test
 	public void addEmployeeTest(Map<String, String> data) {
 		FixtureFactoryLoader.loadTemplates("com.karan.orangehrm.fixtures");
@@ -38,9 +39,8 @@ public final class AddEmployeeTest extends BaseTest {
 			boolean result = new LoginPO().loginToApp(data.get("username"), data.get("password"))
 					.selectTopMenuOption(TopBarMenu.ADDEMPLOYEE, AddEmployeePO.class).enterEmployeeDetails(empData)
 					.navigateToEmployeeListPage().isIdPresent(empData.getEmployeeId());
-			if (result) {
-				new HomePO().doLogout(ProfileDropDownOptions.LOGOUT).getCurrentPageTitle();
-			}
+			Assertions.assertThat(result).isTrue();
+			new HomePO().doLogout(ProfileDropDownOptions.LOGOUT).getCurrentPageTitle();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
